@@ -64,7 +64,7 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start; /* align contact to top of name */
       gap: 24px;
     }
 
@@ -93,6 +93,7 @@
       text-align: right;
       font-size: 0.85rem;
       color: var(--fg);
+      padding-top: 2px; /* tiny nudge to visually align with name top */
     }
 
     .top-banner-contact div + div {
@@ -120,7 +121,7 @@
       background-size: cover;
       background-position: center;
       filter: grayscale(100%);
-      opacity: 0.6; /* tune this for brightness */
+      opacity: 0.5; /* darker than before; tweak here */
     }
 
     .hero::after {
@@ -128,8 +129,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top, transparent 0, rgba(0, 0, 0, 0.25) 60%),
-        radial-gradient(circle at bottom, transparent 0, rgba(0, 0, 0, 0.35) 55%);
+        radial-gradient(circle at top, transparent 0, rgba(0, 0, 0, 0.3) 60%),
+        radial-gradient(circle at bottom, transparent 0, rgba(0, 0, 0, 0.4) 55%);
       mix-blend-mode: multiply;
     }
 
@@ -139,14 +140,13 @@
       width: 100%;
       max-width: var(--max-width);
       padding: calc(32px + var(--banner-overlap)) 20px 56px;
-      /* padding-top pushes text just below the banner even though hero is pulled up */
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
 
     .hero-main {
-      max-width: 640px;
+      max-width: 640px; /* aligns under left edge of name block */
     }
 
     .hero-tagline {
@@ -212,40 +212,40 @@
       color: #e0e0e0;
     }
 
-    /* Selected Work poster grid */
+    /* Selected Work poster grid - 3 x N, 16:9 cards */
 
     .works-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
       margin-top: 16px;
     }
 
     .work-card {
-      background: #090909;
-      border: 1px solid #222;
-      padding: 10px;
+      background: #0b0b0b;
+      padding: 6px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .work-poster {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       background: #111;
       display: block;
+      border-radius: 4px;
     }
 
     .work-caption {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #d5d5d5;
     }
 
     .work-caption span {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
     }
 
@@ -266,7 +266,13 @@
       margin-top: 4px;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
       .top-banner {
         padding: 18px 16px 22px;
       }
@@ -424,12 +430,38 @@
                 <span>Role · Year</span>
               </div>
             </div>
+
+            <!-- TEMPLATE CARD 5 -->
+            <div class="work-card">
+              <img
+                src="work-05.jpg"
+                alt="Project poster placeholder 5"
+                class="work-poster"
+              />
+              <div class="work-caption">
+                Project Title
+                <span>Role · Year</span>
+              </div>
+            </div>
+
+            <!-- TEMPLATE CARD 6 -->
+            <div class="work-card">
+              <img
+                src="work-06.jpg"
+                alt="Project poster placeholder 6"
+                class="work-poster"
+              />
+              <div class="work-caption">
+                Project Title
+                <span>Role · Year</span>
+              </div>
+            </div>
           </div>
 
           <p class="small" style="margin-top: 10px;">
-            Replace <code>work-01.jpg</code>, <code>work-02.jpg</code>, etc. with your own
-            posters in the repo root (or adjust the filenames here), and update the captions
-            as much or as little as you like.
+            Upload <code>work-01.jpg</code> through <code>work-06.jpg</code> to your repo
+            (or rename these in the HTML to match your poster filenames). Duplicate a
+            <code>.work-card</code> block if you want more than six.
           </p>
         </section>
 
@@ -447,6 +479,7 @@
   </div>
 </body>
 </html>
+
 
 
 
