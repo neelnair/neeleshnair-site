@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <title>Neelesh Nair – Virtual Production & XR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
       --bg: #050505;
+      --bg-alt: #0b0b0b;
       --fg: #f5f5f5;
-      --muted: #aaaaaa;
-      --accent: #ffffff;
-      --max-width: 960px;
+      --muted: #9b9b9b;
+      --border-subtle: #1e1e1e;
+      --max-width: 1040px;
     }
 
     * {
@@ -20,76 +22,159 @@
     }
 
     body {
+      margin: 0;
       background: var(--bg);
       color: var(--fg);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
       line-height: 1.6;
-      display: flex;
-      justify-content: center;
-      padding: 32px 16px 64px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Background image with low opacity & grayscale */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("hero.jpg"); /* <-- change file name if needed */
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      opacity: 0.35; /* lower = more subtle */
+    }
+
+    /* Dark vignette overlay for cinematic feel */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, transparent 0, rgba(0, 0, 0, 0.75) 60%),
+        radial-gradient(circle at bottom, transparent 0, rgba(0, 0, 0, 0.85) 55%);
+      mix-blend-mode: multiply;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
       width: 100%;
       max-width: var(--max-width);
-      border: 1px solid #222;
-      padding: 32px 24px 40px;
-    }
-
-    header {
+      padding: 32px 20px 40px;
       display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 16px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 16px;
-      margin-bottom: 24px;
-    }
-
-    .name-block {
-      flex: 1 1 260px;
-    }
-
-    .name-block h1 {
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .name-block h2 {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .contact {
-      flex: 1 1 220px;
       font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .hero-name-block h1 {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .hero-name-block h2 {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-contact {
       text-align: right;
+      font-size: 0.75rem;
     }
 
-    .contact a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid #555;
-      padding-bottom: 1px;
-    }
-
-    .contact a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .contact div + div {
+    .hero-contact div + div {
       margin-top: 4px;
     }
 
-    main {
+    .hero-main {
+      max-width: 640px;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--fg);
+    }
+
+    .hero-tagline span {
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-pill-row {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      backdrop-filter: blur(4px);
+      background: rgba(5, 5, 5, 0.5);
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+
+    .content {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .content-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 20px 64px;
       display: grid;
       grid-template-columns: 2fr 3fr;
-      gap: 32px;
+      gap: 40px;
     }
 
     section + section {
@@ -97,33 +182,47 @@
     }
 
     h3 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--muted);
       margin-bottom: 8px;
     }
 
-    .tagline {
-      font-size: 0.95rem;
+    .small {
+      font-size: 0.78rem;
       color: var(--muted);
-      margin-bottom: 8px;
     }
 
-    .pill-row {
+    /* Credits section */
+
+    .credits-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .credits-item {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .pill {
-      border: 1px solid #555;
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .credits-title {
+      font-weight: 500;
     }
+
+    .credits-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Experience */
 
     .job {
       margin-bottom: 16px;
@@ -132,34 +231,33 @@
     .job-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      gap: 8px;
+      gap: 12px;
+      font-size: 0.86rem;
     }
 
     .job-title {
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .job-meta {
       color: var(--muted);
       white-space: nowrap;
       text-align: right;
+      font-size: 0.78rem;
     }
 
     .job p {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       margin-top: 4px;
+      color: #d7d7d7;
     }
 
     ul {
       list-style: none;
-      margin-top: 4px;
       padding-left: 0;
-      font-size: 0.85rem;
-    }
-
-    li {
-      margin-top: 3px;
+      margin-top: 4px;
+      font-size: 0.84rem;
+      color: #c7c7c7;
     }
 
     li::before {
@@ -167,136 +265,168 @@
       color: var(--muted);
     }
 
-    .small {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 6px;
+    li + li {
+      margin-top: 3px;
     }
 
-    @media (max-width: 720px) {
-      body {
-        padding: 16px 8px 32px;
+    @media (max-width: 800px) {
+      .hero-inner {
+        gap: 40px;
       }
 
-      .page {
-        padding: 24px 16px 32px;
-      }
-
-      header {
+      .hero-top {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .contact {
+      .hero-contact {
         text-align: left;
       }
 
-      main {
+      .content-inner {
         grid-template-columns: 1fr;
+        gap: 32px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
-    <header>
-      <div class="name-block">
-        <h1>NEELESH NAIR</h1>
-        <h2>Virtual Production · XR · Real-Time</h2>
-      </div>
-      <div class="contact">
-        <div><a href="mailto:youremail@domain.com">youremail@domain.com</a></div>
-        <div>Vancouver, Canada</div>
-        <div>
-          <a href="https://www.neeleshnair.com" target="_blank" rel="noreferrer">
-            neeleshnair.com
-          </a>
-        </div>
-        <div>
-          <a href="https://vimeo.com/yourhandle" target="_blank" rel="noreferrer">
-            Vimeo / Showreel
-          </a>
-        </div>
-      </div>
-    </header>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-top">
+          <div class="hero-name-block">
+            <h1>NEELESH NAIR</h1>
+            <h2>VIRTUAL PRODUCTION · XR · REAL-TIME</h2>
+          </div>
 
-    <main>
-      <!-- LEFT COLUMN -->
-      <div>
-        <section>
-          <h3>Profile</h3>
-          <p class="tagline">
-            Technical & creative lead at the intersection of LED volumes, real-time engines,
-            and live performance, building tools and workflows for next-generation production.
+          <div class="hero-contact">
+            <div><a href="mailto:youremail@domain.com">youremail@domain.com</a></div>
+            <div>Vancouver, Canada</div>
+            <div>
+              <a href="https://neeleshnair.com" target="_blank" rel="noreferrer">
+                neeleshnair.com
+              </a>
+            </div>
+            <div>
+              <a href="https://vimeo.com/yourhandle" target="_blank" rel="noreferrer">
+                Vimeo / Showreel
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-main">
+          <p class="hero-tagline">
+            Technical & creative lead working at the intersection of
+            <span>LED volumes</span>, <span>game engines</span>, and
+            <span>live performance</span> — designing workflows that keep
+            directors, DoPs, and performers playing in real time.
           </p>
-        </section>
+          <p class="hero-meta">
+            Currently operating and developing workflows on one of the world’s largest LED volumes.
+          </p>
 
-        <section>
-          <h3>Focus</h3>
-          <div class="pill-row">
+          <div class="hero-pill-row">
             <span class="pill">Virtual Production</span>
             <span class="pill">LED Volumes</span>
             <span class="pill">Unreal Engine</span>
             <span class="pill">TouchDesigner</span>
             <span class="pill">XR / Live Shows</span>
           </div>
-        </section>
-
-        <section>
-          <h3>Skills</h3>
-          <ul>
-            <li>Real-time Engine Pipelines (UE, Unity)</li>
-            <li>LED Volume Operations & Calibration</li>
-            <li>Motion Capture & Camera Tracking</li>
-            <li>Show Control & Interactive Systems</li>
-            <li>Client-facing Technical Direction</li>
-          </ul>
-        </section>
+        </div>
       </div>
+    </section>
 
-      <!-- RIGHT COLUMN -->
-      <div>
-        <section>
-          <h3>Selected Experience</h3>
-
-          <div class="job">
-            <div class="job-header">
-              <div>
-                <div class="job-title">Technical Lead – Virtual Production</div>
-                <div>Versatile Media</div>
-              </div>
-              <div class="job-meta">
-                2023 – Present<br />
-                Vancouver, BC
-              </div>
-            </div>
-            <p>
-              Lead technical operations on one of the world’s largest LED volumes, bridging
-              creative, engineering, and on-set teams.
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <div class="content-inner">
+        <!-- LEFT COLUMN -->
+        <div>
+          <section>
+            <h3>About</h3>
+            <p class="small">
+              I bridge creative and technical teams on LED volumes and real-time stages:
+              building tools, solving on-set problems, and making sure bold ideas survive
+              contact with reality.
             </p>
-            <ul>
-              <li>Designed and operated real-time workflows for film, TV, and live shows.</li>
-              <li>Prototyped interactive installations using Unreal Engine & TouchDesigner.</li>
+          </section>
+
+          <section>
+            <h3>Selected Titles</h3>
+            <ul class="credits-list">
+              <!-- Fill these with your real credits / roles / years -->
+              <li class="credits-item">
+                <span class="credits-title">Final Destination</span>
+                <span class="credits-meta">Virtual Production &nbsp;·&nbsp; Year</span>
+              </li>
+              <li class="credits-item">
+                <span class="credits-title">Mortal Kombat 11</span>
+                <span class="credits-meta">Role &nbsp;·&nbsp; Year</span>
+              </li>
+              <li class="credits-item">
+                <span class="credits-title">[Add Title]</span>
+                <span class="credits-meta">Role &nbsp;·&nbsp; Year</span>
+              </li>
             </ul>
-          </div>
+            <p class="small">
+              Full project list available on request and in detailed breakdowns on my Vimeo.
+            </p>
+          </section>
 
-          <!-- Add more roles here -->
+          <section>
+            <h3>Focus</h3>
+            <ul>
+              <li>Designing real-time pipelines from previs to final pixel on LED.</li>
+              <li>Building interactive tools for directors and performers.</li>
+              <li>Bridging game engine thinking with film & live performance.</li>
+            </ul>
+          </section>
+        </div>
 
-        </section>
+        <!-- RIGHT COLUMN -->
+        <div>
+          <section>
+            <h3>Recent Work</h3>
 
-        <section>
-          <h3>Notable Work</h3>
-          <ul>
-            <li>Renaissance opera live LED show – technical direction & system design.</li>
-            <li>Interactive XR installations for festivals & tech expos.</li>
-            <li>Real-time tools for directors / DoPs on LED stages.</li>
-          </ul>
-          <p class="small">
-            Full portfolio & breakdowns available on my Vimeo and project pages.
-          </p>
-        </section>
+            <div class="job">
+              <div class="job-header">
+                <div>
+                  <div class="job-title">Technical Lead – Virtual Production</div>
+                  <div>Versatile Media</div>
+                </div>
+                <div class="job-meta">
+                  2023 – Present<br />
+                  Vancouver, BC
+                </div>
+              </div>
+              <p>
+                Leading technical operations on a large-scale LED volume, from workflow design
+                to on-set problem solving for film, TV, and live work.
+              </p>
+              <ul>
+                <li>Prototype and deploy real-time workflows in Unreal & TouchDesigner.</li>
+                <li>Collaborate closely with directors, DoPs, and production teams.</li>
+                <li>Oversee calibration, content integration, and show control systems.</li>
+              </ul>
+            </div>
+
+            <!-- Add more roles as needed -->
+          </section>
+
+          <section>
+            <h3>Contact</h3>
+            <p class="small">
+              For collaborations, virtual production consulting, or LED/xR show design:<br />
+              <a href="mailto:youremail@domain.com">youremail@domain.com</a>
+            </p>
+          </section>
+        </div>
       </div>
     </main>
   </div>
 </body>
 </html>
+
