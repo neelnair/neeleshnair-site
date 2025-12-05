@@ -59,13 +59,12 @@
       border-bottom: 1px solid #111;
     }
 
-    .top-banner-inner {
+    .top-banner-inner,
+    .hero-inner {
       max-width: var(--max-width);
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start; /* align contact to top of name */
-      gap: 24px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .top-banner-name-block {
@@ -135,18 +134,14 @@
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: var(--max-width);
-      padding: calc(32px + var(--banner-overlap)) 20px 56px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    padding-top: calc(32px + var(--banner-overlap));
+    padding-bottom: 56px;
     }
 
     .hero-main {
-      max-width: 640px; /* aligns under left edge of name block */
+     max-width: 640px;
+     margin-left: 0;     /* force alignment with header left edge */
+     padding-left: 0;    /* remove unintended padding */
     }
 
     .hero-tagline {
