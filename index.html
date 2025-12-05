@@ -27,7 +27,7 @@
       color: var(--fg);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     a {
@@ -45,11 +45,40 @@
       flex-direction: column;
     }
 
+    /* -------- TOP BANNER (BLACK HEADER) -------- */
+
+    .top-banner {
+      width: 100%;
+      background: #000;
+      padding: 28px 20px 36px;
+      border-bottom: 1px solid #111;
+    }
+
+    .top-banner-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .top-banner-name {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .top-banner-sub {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     /* ---------- HERO ---------- */
 
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -57,26 +86,24 @@
       background: var(--bg);
     }
 
-    /* Background image with low opacity & grayscale */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: url("hero.jpg"); /* <-- change file name if needed */
+      background-image: url("hero.jpg"); /* change name if needed */
       background-size: cover;
       background-position: center;
       filter: grayscale(100%);
-      opacity: 0.35; /* lower = more subtle */
+      opacity: 0.6; /* tune this for brightness */
     }
 
-    /* Dark vignette overlay for cinematic feel */
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top, transparent 0, rgba(0, 0, 0, 0.4) 60%),
-        radial-gradient(circle at bottom, transparent 0, rgba(0, 0, 0, 0.4) 55%);
+        radial-gradient(circle at top, transparent 0, rgba(0, 0, 0, 0.25) 60%),
+        radial-gradient(circle at bottom, transparent 0, rgba(0, 0, 0, 0.35) 55%);
       mix-blend-mode: multiply;
     }
 
@@ -85,10 +112,10 @@
       z-index: 1;
       width: 100%;
       max-width: var(--max-width);
-      padding: 32px 20px 40px;
+      padding: 40px 20px 48px;
       display: flex;
       flex-direction: column;
-      gap: 64px;
+      gap: 40px;
     }
 
     .hero-top {
@@ -96,29 +123,15 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 16px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--muted);
-    }
-
-    .hero-name-block h1 {
-      font-size: clamp(2.4rem, 5vw, 3.2rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .hero-name-block h2 {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
       color: var(--muted);
     }
 
     .hero-contact {
       text-align: right;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
     }
 
     .hero-contact div + div {
@@ -127,10 +140,11 @@
 
     .hero-main {
       max-width: 640px;
+      margin-top: 8px;
     }
 
     .hero-tagline {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: var(--fg);
     }
 
@@ -139,26 +153,26 @@
     }
 
     .hero-meta {
-      margin-top: 14px;
-      font-size: 0.8rem;
+      margin-top: 12px;
+      font-size: 0.95rem;
       color: var(--muted);
     }
 
     .hero-pill-row {
-      margin-top: 20px;
+      margin-top: 18px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
     .pill {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 4px 10px;
-      font-size: 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 4px 12px;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       backdrop-filter: blur(4px);
-      background: rgba(5, 5, 5, 0.5);
+      background: rgba(5, 5, 5, 0.55);
     }
 
     /* ---------- MAIN CONTENT ---------- */
@@ -175,64 +189,74 @@
       display: grid;
       grid-template-columns: 2fr 3fr;
       gap: 40px;
+      font-size: 1rem;
     }
 
     section + section {
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     h3 {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .small {
-      font-size: 0.78rem;
-      color: var(--muted);
+      font-size: 0.96rem;
+      color: #e0e0e0;
     }
 
-    /* Credits section */
+    /* Selected Work poster grid */
 
-    .credits-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.9rem;
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
     }
 
-    .credits-item {
+    .work-card {
+      background: #090909;
+      border: 1px solid #222;
+      padding: 10px;
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .credits-title {
-      font-weight: 500;
+    .work-poster {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      background: #111;
+      display: block;
     }
 
-    .credits-meta {
-      font-size: 0.78rem;
+    .work-caption {
+      font-size: 0.9rem;
+      color: #d5d5d5;
+    }
+
+    .work-caption span {
+      display: block;
+      font-size: 0.8rem;
       color: var(--muted);
-      white-space: nowrap;
     }
 
     /* Experience */
 
     .job {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .job-header {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      font-size: 0.86rem;
+      font-size: 0.98rem;
     }
 
     .job-title {
@@ -243,21 +267,21 @@
       color: var(--muted);
       white-space: nowrap;
       text-align: right;
-      font-size: 0.78rem;
+      font-size: 0.9rem;
     }
 
     .job p {
-      font-size: 0.86rem;
-      margin-top: 4px;
-      color: #d7d7d7;
+      font-size: 0.96rem;
+      margin-top: 6px;
+      color: #e2e2e2;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
-      margin-top: 4px;
-      font-size: 0.84rem;
-      color: #c7c7c7;
+      margin-top: 6px;
+      font-size: 0.96rem;
+      color: #e0e0e0;
     }
 
     li::before {
@@ -266,12 +290,17 @@
     }
 
     li + li {
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     @media (max-width: 800px) {
+      .top-banner {
+        padding: 20px 16px 24px;
+      }
+
       .hero-inner {
-        gap: 40px;
+        padding: 28px 16px 40px;
+        gap: 28px;
       }
 
       .hero-top {
@@ -286,6 +315,11 @@
       .content-inner {
         grid-template-columns: 1fr;
         gap: 32px;
+        padding: 32px 16px 56px;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -293,17 +327,24 @@
 
 <body>
   <div class="page">
+    <!-- TOP BLACK BANNER -->
+    <header class="top-banner">
+      <div class="top-banner-inner">
+        <div class="top-banner-name">NEELESH NAIR</div>
+        <div class="top-banner-sub">VIRTUAL PRODUCTION · XR · REAL-TIME</div>
+      </div>
+    </header>
+
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-top">
-          <div class="hero-name-block">
-            <h1>NEELESH NAIR</h1>
-            <h2>VIRTUAL PRODUCTION · XR · REAL-TIME</h2>
+          <div class="hero-top-left">
+            <!-- Intentionally minimal; you can add a small label if you want -->
           </div>
 
           <div class="hero-contact">
-            <div><a href="mailto:youremail@domain.com">youremail@domain.com</a></div>
+            <div><a href="mailto:neeleshnair28@gmail.com">neeleshnair28@gmail.com</a></div>
             <div>Vancouver, Canada</div>
             <div>
               <a href="https://neeleshnair.com" target="_blank" rel="noreferrer">
@@ -311,8 +352,8 @@
               </a>
             </div>
             <div>
-              <a href="https://vimeo.com/yourhandle" target="_blank" rel="noreferrer">
-                Vimeo / Showreel
+              <a href="https://vimeo.com/user37052627" target="_blank" rel="noreferrer">
+                vimeo.com/user37052627
               </a>
             </div>
           </div>
@@ -320,13 +361,14 @@
 
         <div class="hero-main">
           <p class="hero-tagline">
-            Technical & creative lead working at the intersection of
+            Technical &amp; creative lead working at the intersection of
             <span>LED volumes</span>, <span>game engines</span>, and
-            <span>live performance</span> — designing workflows that keep
-            directors, DoPs, and performers playing in real time.
+            <span>live performance</span> — building workflows that keep
+            directors and performers playing in real time.
           </p>
           <p class="hero-meta">
-            Currently operating and developing workflows on one of the world’s largest LED volumes.
+            I operate and develop pipelines on large-scale LED stages, translating messy
+            on-set constraints into tools, looks, and systems that ship shots.
           </p>
 
           <div class="hero-pill-row">
@@ -348,40 +390,87 @@
           <section>
             <h3>About</h3>
             <p class="small">
-              I bridge creative and technical teams on LED volumes and real-time stages:
-              building tools, solving on-set problems, and making sure bold ideas survive
-              contact with reality.
+              I work where virtual production, game engines, and live performance collide —
+              designing and operating real-time workflows on LED volumes. My focus is on
+              making complex systems feel invisible: giving directors clear options, giving
+              crews reliable tools, and keeping performers grounded in worlds that only
+              exist in pixels until the cameras roll.
             </p>
           </section>
 
           <section>
-            <h3>Selected Titles</h3>
-            <ul class="credits-list">
-              <!-- Fill these with your real credits / roles / years -->
-              <li class="credits-item">
-                <span class="credits-title">Final Destination</span>
-                <span class="credits-meta">Virtual Production &nbsp;·&nbsp; Year</span>
-              </li>
-              <li class="credits-item">
-                <span class="credits-title">Mortal Kombat 11</span>
-                <span class="credits-meta">Role &nbsp;·&nbsp; Year</span>
-              </li>
-              <li class="credits-item">
-                <span class="credits-title">[Add Title]</span>
-                <span class="credits-meta">Role &nbsp;·&nbsp; Year</span>
-              </li>
-            </ul>
+            <h3>Selected Work</h3>
             <p class="small">
-              Full project list available on request and in detailed breakdowns on my Vimeo.
+              A few projects I&apos;ve helped bring to life. Posters and details are
+              intentionally minimal — think of this as a film shelf, not a full CV.
+            </p>
+
+            <div class="works-grid">
+              <!-- TEMPLATE CARD 1 -->
+              <div class="work-card">
+                <img
+                  src="work-01.jpg"
+                  alt="Project poster placeholder 1"
+                  class="work-poster"
+                />
+                <div class="work-caption">
+                  Project Title
+                  <span>Role · Year</span>
+                </div>
+              </div>
+
+              <!-- TEMPLATE CARD 2 -->
+              <div class="work-card">
+                <img
+                  src="work-02.jpg"
+                  alt="Project poster placeholder 2"
+                  class="work-poster"
+                />
+                <div class="work-caption">
+                  Project Title
+                  <span>Role · Year</span>
+                </div>
+              </div>
+
+              <!-- TEMPLATE CARD 3 -->
+              <div class="work-card">
+                <img
+                  src="work-03.jpg"
+                  alt="Project poster placeholder 3"
+                  class="work-poster"
+                />
+                <div class="work-caption">
+                  Project Title
+                  <span>Role · Year</span>
+                </div>
+              </div>
+
+              <!-- TEMPLATE CARD 4 -->
+              <div class="work-card">
+                <img
+                  src="work-04.jpg"
+                  alt="Project poster placeholder 4"
+                  class="work-poster"
+                />
+                <div class="work-caption">
+                  Project Title
+                  <span>Role · Year</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="small" style="margin-top: 10px;">
+              Replace <code>work-01.jpg</code>, <code>work-02.jpg</code>, etc. with your own
+              posters in the repo root, and adjust the captions as needed.
             </p>
           </section>
 
           <section>
             <h3>Focus</h3>
             <ul>
-              <li>Designing real-time pipelines from previs to final pixel on LED.</li>
-              <li>Building interactive tools for directors and performers.</li>
-              <li>Bridging game engine thinking with film & live performance.</li>
+              <li>Designing real-time pipelines from previs to final pixel on LED volumes.</li>
+              <li>Building interactive tools for directors, DoPs, and performers.</li>
+              <li>Bridging game engine workflows with film, TV, and live shows.</li>
             </ul>
           </section>
         </div>
@@ -403,24 +492,25 @@
                 </div>
               </div>
               <p>
-                Leading technical operations on a large-scale LED volume, from workflow design
-                to on-set problem solving for film, TV, and live work.
+                Leading technical operations on a large-scale LED volume: from workflow design
+                and show look development to on-set troubleshooting for film, TV, and live work.
               </p>
               <ul>
-                <li>Prototype and deploy real-time workflows in Unreal & TouchDesigner.</li>
-                <li>Collaborate closely with directors, DoPs, and production teams.</li>
+                <li>Prototype and deploy real-time workflows in Unreal Engine &amp; TouchDesigner.</li>
+                <li>Work directly with directors and DoPs to translate creative intent into
+                    practical setups.</li>
                 <li>Oversee calibration, content integration, and show control systems.</li>
               </ul>
             </div>
-
-            <!-- Add more roles as needed -->
           </section>
 
           <section>
             <h3>Contact</h3>
             <p class="small">
               For collaborations, virtual production consulting, or LED/xR show design:<br />
-              <a href="mailto:youremail@domain.com">youremail@domain.com</a>
+              <a href="mailto:neeleshnair28@gmail.com">neeleshnair28@gmail.com</a><br />
+              Vimeo: <a href="https://vimeo.com/user37052627" target="_blank" rel="noreferrer">
+              vimeo.com/user37052627</a>
             </p>
           </section>
         </div>
@@ -429,5 +519,6 @@
   </div>
 </body>
 </html>
+
 
 
