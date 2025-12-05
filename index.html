@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neelesh Nair – Virtual Production & XR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050505;
+      --fg: #f5f5f5;
+      --muted: #aaaaaa;
+      --accent: #ffffff;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px 64px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max-width);
+      border: 1px solid #222;
+      padding: 32px 24px 40px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 16px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .name-block {
+      flex: 1 1 260px;
+    }
+
+    .name-block h1 {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .name-block h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .contact {
+      flex: 1 1 220px;
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid #555;
+      padding-bottom: 1px;
+    }
+
+    .contact a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .contact div + div {
+      margin-top: 4px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 32px;
+    }
+
+    section + section {
+      margin-top: 24px;
+    }
+
+    h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      border: 1px solid #555;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .job {
+      margin-bottom: 16px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      gap: 8px;
+    }
+
+    .job-title {
+      font-weight: 600;
+    }
+
+    .job-meta {
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .job p {
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 4px;
+      padding-left: 0;
+      font-size: 0.85rem;
+    }
+
+    li {
+      margin-top: 3px;
+    }
+
+    li::before {
+      content: "– ";
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 16px 8px 32px;
+      }
+
+      .page {
+        padding: 24px 16px 32px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact {
+        text-align: left;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="name-block">
+        <h1>NEELESH NAIR</h1>
+        <h2>Virtual Production · XR · Real-Time</h2>
+      </div>
+      <div class="contact">
+        <div><a href="mailto:youremail@domain.com">youremail@domain.com</a></div>
+        <div>Vancouver, Canada</div>
+        <div>
+          <a href="https://www.neeleshnair.com" target="_blank" rel="noreferrer">
+            neeleshnair.com
+          </a>
+        </div>
+        <div>
+          <a href="https://vimeo.com/yourhandle" target="_blank" rel="noreferrer">
+            Vimeo / Showreel
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <div>
+        <section>
+          <h3>Profile</h3>
+          <p class="tagline">
+            Technical & creative lead at the intersection of LED volumes, real-time engines,
+            and live performance, building tools and workflows for next-generation production.
+          </p>
+        </section>
+
+        <section>
+          <h3>Focus</h3>
+          <div class="pill-row">
+            <span class="pill">Virtual Production</span>
+            <span class="pill">LED Volumes</span>
+            <span class="pill">Unreal Engine</span>
+            <span class="pill">TouchDesigner</span>
+            <span class="pill">XR / Live Shows</span>
+          </div>
+        </section>
+
+        <section>
+          <h3>Skills</h3>
+          <ul>
+            <li>Real-time Engine Pipelines (UE, Unity)</li>
+            <li>LED Volume Operations & Calibration</li>
+            <li>Motion Capture & Camera Tracking</li>
+            <li>Show Control & Interactive Systems</li>
+            <li>Client-facing Technical Direction</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <section>
+          <h3>Selected Experience</h3>
+
+          <div class="job">
+            <div class="job-header">
+              <div>
+                <div class="job-title">Technical Lead – Virtual Production</div>
+                <div>Versatile Media</div>
+              </div>
+              <div class="job-meta">
+                2023 – Present<br />
+                Vancouver, BC
+              </div>
+            </div>
+            <p>
+              Lead technical operations on one of the world’s largest LED volumes, bridging
+              creative, engineering, and on-set teams.
+            </p>
+            <ul>
+              <li>Designed and operated real-time workflows for film, TV, and live shows.</li>
+              <li>Prototyped interactive installations using Unreal Engine & TouchDesigner.</li>
+            </ul>
+          </div>
+
+          <!-- Add more roles here -->
+
+        </section>
+
+        <section>
+          <h3>Notable Work</h3>
+          <ul>
+            <li>Renaissance opera live LED show – technical direction & system design.</li>
+            <li>Interactive XR installations for festivals & tech expos.</li>
+            <li>Real-time tools for directors / DoPs on LED stages.</li>
+          </ul>
+          <p class="small">
+            Full portfolio & breakdowns available on my Vimeo and project pages.
+          </p>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
