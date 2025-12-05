@@ -214,8 +214,8 @@
     }
 
     .hero-main {
-      max-width: 640px;
-      margin-left: 0;   /* hard-align with header text */
+      max-width: 100%;   /* fills the same width as the header text container */
+      margin-left: 0;
       padding-left: 0;
     }
 
@@ -717,44 +717,43 @@
     </main>
   </div>
 
-  <script>
-    (function () {
-      const playButton = document.getElementById("playButton");
-      const overlay = document.getElementById("videoOverlay");
-      const closeButton = document.getElementById("videoClose");
-      const frame = document.getElementById("videoFrame");
-      const dataSrc = frame.getAttribute("data-src");
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-      function openOverlay() {
-        if (!frame.src) {
-          frame.src = dataSrc;
-        }
-        overlay.classList.add("is-visible");
-        overlay.setAttribute("aria-hidden", "false");
-      }
+  const playButton = document.getElementById("playButton");
+  const overlay = document.getElementById("videoOverlay");
+  const closeButton = document.getElementById("videoClose");
+  const frame = document.getElementById("videoFrame");
+  const dataSrc = frame.getAttribute("data-src");
 
-      function closeOverlay() {
-        overlay.classList.remove("is-visible");
-        overlay.setAttribute("aria-hidden", "true");
-        frame.src = ""; // stop playback
-      }
+  function openOverlay() {
+    frame.src = dataSrc; // inject autoplaying Vimeo URL
+    overlay.classList.add("is-visible");
+    overlay.setAttribute("aria-hidden", "false");
+  }
 
-      playButton.addEventListener("click", openOverlay);
-      closeButton.addEventListener("click", closeOverlay);
+  function closeOverlay() {
+    overlay.classList.remove("is-visible");
+    overlay.setAttribute("aria-hidden", "true");
+    frame.src = ""; // unload video + stop audio
+  }
 
-      overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) {
-          closeOverlay();
-        }
-      });
+  playButton.addEventListener("click", openOverlay);
+  closeButton.addEventListener("click", closeOverlay);
 
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && overlay.classList.contains("is-visible")) {
-          closeOverlay();
-        }
-      });
-    })();
-  </script>
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && overlay.classList.contains("is-visible")) {
+      closeOverlay();
+    }
+  });
+
+});
+</script>
+
 </body>
 </html>
 
